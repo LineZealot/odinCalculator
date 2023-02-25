@@ -1,0 +1,1 @@
+/* Write a function for each kind of operation */
