@@ -28,12 +28,17 @@ button {
 /* Calculator Display */
 .calculator-display {
     /* Style */
+    font-size: 40px;
     border: solid black 1px;
     border-radius: 4px;
     /* Layout */
     padding: 2px;
     height: 64px;
     width: 244px;
+    /* Flex */
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 /* Calculator Buttons */
 .calculator-buttons {
