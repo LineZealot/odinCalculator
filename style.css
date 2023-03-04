@@ -28,7 +28,6 @@ button {
 /* Calculator Display */
 .calculator-display {
     /* Style */
-    font-size: 40px;
     border: solid black 1px;
     border-radius: 4px;
     /* Layout */
@@ -37,8 +36,26 @@ button {
     width: 244px;
     /* Flex */
     display: flex;
+    flex-direction: column;
+}
+.display.top {
+    /* Style */
+    font-size: 18px;
+    /* Layout */
+    height: 32px;
+    width: 244px;
+    /* Flex */
+    display: flex;
+}
+.display.bottom {
+    /* Style */
+    font-size: 32px;
+    /* Layout */
+    height: 32px;
+    width: 244px;
+    /* Flex */
+    display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
 }
 /* Calculator Buttons */
 .calculator-buttons {
