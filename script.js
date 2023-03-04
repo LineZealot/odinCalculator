@@ -13,7 +13,7 @@ function calculator() {
         if(displayState === 0) {
             display.textContent = 1;
             displayState++;
-        } else if(displayState <= 10) {
+        } else if(displayState < 10) {
             display.textContent += 1;
             displayState++;
         }
@@ -23,7 +23,7 @@ function calculator() {
         if(displayState === 0) {
             display.textContent = 2;
             displayState++;
-        } else if(displayState <= 10) {
+        } else if(displayState < 10) {
             display.textContent += 2;
             displayState++;
         }
@@ -33,7 +33,7 @@ function calculator() {
         if(displayState === 0) {
             display.textContent = 3;
             displayState++;
-        } else if(displayState <= 10) {
+        } else if(displayState < 10) {
             display.textContent += 3;
             displayState++;
         }
@@ -43,7 +43,7 @@ function calculator() {
         if(displayState === 0) {
             display.textContent = 4;
             displayState++;
-        } else if(displayState <= 10) {
+        } else if(displayState < 10) {
             display.textContent += 4;
             displayState++;
         }
@@ -53,7 +53,7 @@ function calculator() {
         if(displayState === 0) {
             display.textContent = 5;
             displayState++;
-        } else if(displayState <= 10) {
+        } else if(displayState < 10) {
             display.textContent += 5;
             displayState++;
         }
@@ -63,7 +63,7 @@ function calculator() {
         if(displayState === 0) {
             display.textContent = 6;
             displayState++;
-        } else if(displayState <= 10) {
+        } else if(displayState < 10) {
             display.textContent += 6;
             displayState++;
         }
@@ -73,7 +73,7 @@ function calculator() {
         if(displayState === 0) {
             display.textContent = 7;
             displayState++;
-        } else if(displayState <= 10) {
+        } else if(displayState < 10) {
             display.textContent += 7;
             displayState++;
         }
@@ -83,7 +83,7 @@ function calculator() {
         if(displayState === 0) {
             display.textContent = 8;
             displayState++;
-        } else if(displayState <= 10) {
+        } else if(displayState < 10) {
             display.textContent += 8;
             displayState++;
         }
@@ -93,11 +93,18 @@ function calculator() {
         if(displayState === 0) {
             display.textContent = 9;
             displayState++;
-        } else if(displayState <= 10) {
+        } else if(displayState < 10) {
             display.textContent += 9;
             displayState++;
         }
     });
+    
+    // Clear Button
+    const buttonClear = document.querySelector('.button.clear');
+    buttonClear.addEventListener('click', () => {
+        display.textContent = 0;
+        displayState = 0;
+    })
 
     // Operating function
     function operate(num1, op, num2) {
