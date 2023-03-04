@@ -98,6 +98,15 @@ function calculator() {
             displayState++;
         }
     });
+    const buttonZero = document.querySelector('.button.zero');
+    buttonZero.addEventListener('click', function(){
+        if(displayState === 0) {
+            display.textContent = 0;
+        } else if(displayState < 10) {
+            display.textContent += 0;
+            displayState++;
+        }
+    });
     
     // Clear Button
     const buttonClear = document.querySelector('.button.clear');
