@@ -10,8 +10,6 @@ function calculator() {
     startDisplay();
 
     // Input values
-    let calcStage = 1;
-
     const numArr1 = [];
     let opSelector = '';
     const numArr2 = [];
@@ -22,11 +20,7 @@ function calculator() {
     const buttonOne = document.querySelector('.button.one');
     buttonOne.addEventListener('click', function(){
         const value = 1;
-        const pushVal = (n) => {if(calcStage === 1) {
-            numArr1.push(n);
-        } else {
-            numArr2.push(n);
-        }}
+        const pushVal = (n) => numArr1.push(n);
 
         if(displayState === 0) {
             display.textContent = value;
@@ -41,12 +35,8 @@ function calculator() {
     const buttonTwo = document.querySelector('.button.two');
     buttonTwo.addEventListener('click', function(){
         const value = 2;
-        const pushVal = (n) => {if(calcStage === 1) {
-            numArr1.push(n);
-        } else {
-            numArr2.push(n);
-        }}
-
+        const pushVal = (n) => numArr1.push(n);
+        
         if(displayState === 0) {
             display.textContent = value;
             displayState++;
@@ -60,12 +50,8 @@ function calculator() {
     const buttonThree = document.querySelector('.button.three');
     buttonThree.addEventListener('click', function(){
         const value = 3;
-        const pushVal = (n) => {if(calcStage === 1) {
-            numArr1.push(n);
-        } else {
-            numArr2.push(n);
-        }}
-
+        const pushVal = (n) => numArr1.push(n);
+        
         if(displayState === 0) {
             display.textContent = value;
             displayState++;
@@ -79,12 +65,8 @@ function calculator() {
     const buttonFour = document.querySelector('.button.four');
     buttonFour.addEventListener('click', function(){
         const value = 4;
-        const pushVal = (n) => {if(calcStage === 1) {
-            numArr1.push(n);
-        } else {
-            numArr2.push(n);
-        }}
-
+        const pushVal = (n) => numArr1.push(n);
+        
         if(displayState === 0) {
             display.textContent = value;
             displayState++;
@@ -98,12 +80,8 @@ function calculator() {
     const buttonFive = document.querySelector('.button.five');
     buttonFive.addEventListener('click', function(){
         const value = 5;
-        const pushVal = (n) => {if(calcStage === 1) {
-            numArr1.push(n);
-        } else {
-            numArr2.push(n);
-        }}
-
+        const pushVal = (n) => numArr1.push(n);
+        
         if(displayState === 0) {
             display.textContent = value;
             displayState++;
@@ -117,11 +95,7 @@ function calculator() {
     const buttonSix = document.querySelector('.button.six');
     buttonSix.addEventListener('click', function(){
         const value = 6;
-        const pushVal = (n) => {if(calcStage === 1) {
-            numArr1.push(n);
-        } else {
-            numArr2.push(n);
-        }}
+        const pushVal = (n) => numArr1.push(n);
 
         if(displayState === 0) {
             display.textContent = value;
@@ -136,11 +110,7 @@ function calculator() {
     const buttonSeven = document.querySelector('.button.seven');
     buttonSeven.addEventListener('click', function(){
         const value = 7;
-        const pushVal = (n) => {if(calcStage === 1) {
-            numArr1.push(n);
-        } else {
-            numArr2.push(n);
-        }}
+        const pushVal = (n) => numArr1.push(n);
 
         if(displayState === 0) {
             display.textContent = value;
@@ -155,11 +125,7 @@ function calculator() {
     const buttonEight = document.querySelector('.button.eight');
     buttonEight.addEventListener('click', function(){
         const value = 8;
-        const pushVal = (n) => {if(calcStage === 1) {
-            numArr1.push(n);
-        } else {
-            numArr2.push(n);
-        }}
+        const pushVal = (n) => numArr1.push(n);
 
         if(displayState === 0) {
             display.textContent = value;
@@ -174,11 +140,7 @@ function calculator() {
     const buttonNine = document.querySelector('.button.nine');
     buttonNine.addEventListener('click', function(){
         const value = 9;
-        const pushVal = (n) => {if(calcStage === 1) {
-            numArr1.push(n);
-        } else {
-            numArr2.push(n);
-        }}
+        const pushVal = (n) => numArr1.push(n);
 
         if(displayState === 0) {
             display.textContent = value;
@@ -193,12 +155,8 @@ function calculator() {
     const buttonZero = document.querySelector('.button.zero');
     buttonZero.addEventListener('click', function(){
         const value = 0;
-        const pushVal = (n) => {if(calcStage === 1) {
-            numArr1.push(n);
-        } else {
-            numArr2.push(n);
-        }}
-
+        const pushVal = (n) => numArr1.push(n);
+        
         if(displayState === 0) {
             return;
         } else if(displayState < 10) {
@@ -219,28 +177,24 @@ function calculator() {
     const buttonAdd = document.querySelector('.button.add');
     buttonAdd.addEventListener('click', () => {
         resetDisplay();
-        calcStage = 2;
         opSelector = 'add';
         displayTop.textContent = parseInt(numArr1.join('')) + ' + ';
     });
     const buttonSubtract = document.querySelector('.button.subtract');
     buttonSubtract.addEventListener('click', () => {
         resetDisplay();
-        calcStage = 2;
         opSelector = 'sub';
         displayTop.textContent = parseInt(numArr1.join('')) + ' - ';
     });
     const buttonMultiply = document.querySelector('.button.multiply');
     buttonMultiply.addEventListener('click', () => {
         resetDisplay();
-        calcStage = 2;
         opSelector = 'mult';
         displayTop.textContent = parseInt(numArr1.join('')) + ' x ';
     });
     const buttonDivide = document.querySelector('.button.divide');
     buttonDivide.addEventListener('click', () => {
         resetDisplay();
-        calcStage = 2;
         opSelector = 'div';
         displayTop.textContent = parseInt(numArr1.join('')) + ' / ';
     });
@@ -266,7 +220,6 @@ function calculator() {
     // Equals Button
     const buttonEquals = document.querySelector('.button.equal');
     buttonEquals.addEventListener('click', () => {
-        if(calcStage === 2) {
             function fillEquation () {
                 equation.push(
                     parseInt(numArr1.join('')),
@@ -280,7 +233,7 @@ function calculator() {
 
             displayTop.textContent += numArr2.join('') + ' =';
         }
-    });
+    );
 
     // Clear Button
     const buttonClear = document.querySelector('.button.clear');
@@ -289,7 +242,6 @@ function calculator() {
         numArr1.length = 0;
         numArr2.length = 0;
         equation.length = 0;
-        calcStage = 1;
     });
 }
 calculator();
