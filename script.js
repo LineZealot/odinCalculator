@@ -165,6 +165,23 @@ function calculator() {
         }
     });
 
+    // Point Button
+    const buttonPoint = document.querySelector('.button.point');
+    buttonPoint.addEventListener('click', function(){
+        const value = '.';
+        const pushVal = (n) => numArr.push(n);
+
+        if(displayState === 0) {
+            display.textContent += value;
+            displayState++;
+            pushVal(value);
+        } else if(displayState < 10) {
+            display.textContent += value;
+            displayState++;
+            pushVal(value);
+        }
+    });
+
     // Reset Display Function
     function resetDisplay (x) {
         if(x === undefined) {
@@ -178,7 +195,7 @@ function calculator() {
     // Operator Buttons
     function setOperator(op, symb) {
         if(numArr.length > 0) {
-            equation.push(parseInt(numArr.join('')));
+            equation.push(parseFloat(numArr.join('')));
             equation.push(op);
             displayTop.textContent += numArr.join('') + symb;
             numArr.length = 0;
@@ -224,20 +241,42 @@ function calculator() {
         }
     }
 
+    // Get Result Function
+    function getResult(e) {
+        const m = [];
+        for(let i = 0; i <= e.length; i++) {
+            if(typeof(e[i]) === 'string') {
+                if(m.length === 0) {
+                    m.push(operate(e[i-1], e[i], e[i+1]));
+                } else {
+                    m.push(operate(m[m.length - 1], e[i], e[i+1]));
+                }
+            } else {
+                continue;
+            }
+        }
+        let result = m[m.length - 1];
+        if(toString(result).length > 14) {
+            const resultToString = result.toString();
+            const culledResult = resultToString.substring(0, 13);
+            console.log(culledResult);
+            return parseFloat(culledResult);
+        } else {
+            return result;
+        }
+    }
+
     // Equals Button
     const buttonEquals = document.querySelector('.button.equal');
     buttonEquals.addEventListener('click', () => {
         if(numArr.length > 0) {
-            equation.push(parseInt(numArr.join('')));
+            equation.push(parseFloat(numArr.join('')));
             displayTop.textContent += numArr.join('') + ' =';
             numArr.length = 0;
-            }
-        const result = equation.reduce((acc, curr) => {
-            
-        })
-        console.log(result);
+
+            display.textContent = getResult(equation);
         }
-    );
+    });
 
     // Clear Button
     const buttonClear = document.querySelector('.button.clear');
@@ -247,6 +286,5 @@ function calculator() {
         numArr.length = 0;
         equation.length = 0;
     });
-    console.log(equation);
 }
 calculator();
