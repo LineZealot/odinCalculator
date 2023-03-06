@@ -10,9 +10,8 @@ function calculator() {
     startDisplay();
 
     // Input values
-    const numArr1 = [];
+    const numArr = [];
     let opSelector = '';
-    const numArr2 = [];
 
     const equation = [];
 
@@ -20,7 +19,7 @@ function calculator() {
     const buttonOne = document.querySelector('.button.one');
     buttonOne.addEventListener('click', function(){
         const value = 1;
-        const pushVal = (n) => numArr1.push(n);
+        const pushVal = (n) => numArr.push(n);
 
         if(displayState === 0) {
             display.textContent = value;
@@ -35,7 +34,7 @@ function calculator() {
     const buttonTwo = document.querySelector('.button.two');
     buttonTwo.addEventListener('click', function(){
         const value = 2;
-        const pushVal = (n) => numArr1.push(n);
+        const pushVal = (n) => numArr.push(n);
         
         if(displayState === 0) {
             display.textContent = value;
@@ -50,7 +49,7 @@ function calculator() {
     const buttonThree = document.querySelector('.button.three');
     buttonThree.addEventListener('click', function(){
         const value = 3;
-        const pushVal = (n) => numArr1.push(n);
+        const pushVal = (n) => numArr.push(n);
         
         if(displayState === 0) {
             display.textContent = value;
@@ -65,7 +64,7 @@ function calculator() {
     const buttonFour = document.querySelector('.button.four');
     buttonFour.addEventListener('click', function(){
         const value = 4;
-        const pushVal = (n) => numArr1.push(n);
+        const pushVal = (n) => numArr.push(n);
         
         if(displayState === 0) {
             display.textContent = value;
@@ -80,7 +79,7 @@ function calculator() {
     const buttonFive = document.querySelector('.button.five');
     buttonFive.addEventListener('click', function(){
         const value = 5;
-        const pushVal = (n) => numArr1.push(n);
+        const pushVal = (n) => numArr.push(n);
         
         if(displayState === 0) {
             display.textContent = value;
@@ -95,7 +94,7 @@ function calculator() {
     const buttonSix = document.querySelector('.button.six');
     buttonSix.addEventListener('click', function(){
         const value = 6;
-        const pushVal = (n) => numArr1.push(n);
+        const pushVal = (n) => numArr.push(n);
 
         if(displayState === 0) {
             display.textContent = value;
@@ -110,7 +109,7 @@ function calculator() {
     const buttonSeven = document.querySelector('.button.seven');
     buttonSeven.addEventListener('click', function(){
         const value = 7;
-        const pushVal = (n) => numArr1.push(n);
+        const pushVal = (n) => numArr.push(n);
 
         if(displayState === 0) {
             display.textContent = value;
@@ -125,7 +124,7 @@ function calculator() {
     const buttonEight = document.querySelector('.button.eight');
     buttonEight.addEventListener('click', function(){
         const value = 8;
-        const pushVal = (n) => numArr1.push(n);
+        const pushVal = (n) => numArr.push(n);
 
         if(displayState === 0) {
             display.textContent = value;
@@ -140,7 +139,7 @@ function calculator() {
     const buttonNine = document.querySelector('.button.nine');
     buttonNine.addEventListener('click', function(){
         const value = 9;
-        const pushVal = (n) => numArr1.push(n);
+        const pushVal = (n) => numArr.push(n);
 
         if(displayState === 0) {
             display.textContent = value;
@@ -155,7 +154,7 @@ function calculator() {
     const buttonZero = document.querySelector('.button.zero');
     buttonZero.addEventListener('click', function(){
         const value = 0;
-        const pushVal = (n) => numArr1.push(n);
+        const pushVal = (n) => numArr.push(n);
         
         if(displayState === 0) {
             return;
@@ -167,36 +166,44 @@ function calculator() {
     });
 
     // Reset Display Function
-    function resetDisplay () {
-        display.textContent = 0;
-        displayTop.textContent = '';
-        displayState = 0;
+    function resetDisplay (x) {
+        if(x === undefined) {
+            display.textContent = 0;
+            displayState = 0;
+        } else if(x === 'top') {
+            displayTop.textContent = '';
+        }
     }
 
     // Operator Buttons
+    function setOperator(op, symb) {
+        if(numArr.length > 0) {
+            equation.push(parseInt(numArr.join('')));
+            equation.push(op);
+            displayTop.textContent += numArr.join('') + symb;
+            numArr.length = 0;
+        }
+    }
+
     const buttonAdd = document.querySelector('.button.add');
     buttonAdd.addEventListener('click', () => {
         resetDisplay();
-        opSelector = 'add';
-        displayTop.textContent = parseInt(numArr1.join('')) + ' + ';
+        setOperator('add', ' + ');
     });
     const buttonSubtract = document.querySelector('.button.subtract');
     buttonSubtract.addEventListener('click', () => {
         resetDisplay();
-        opSelector = 'sub';
-        displayTop.textContent = parseInt(numArr1.join('')) + ' - ';
+        setOperator('sub', ' - ');
     });
     const buttonMultiply = document.querySelector('.button.multiply');
     buttonMultiply.addEventListener('click', () => {
         resetDisplay();
-        opSelector = 'mult';
-        displayTop.textContent = parseInt(numArr1.join('')) + ' x ';
+        setOperator('mult', ' x ');
     });
     const buttonDivide = document.querySelector('.button.divide');
     buttonDivide.addEventListener('click', () => {
         resetDisplay();
-        opSelector = 'div';
-        displayTop.textContent = parseInt(numArr1.join('')) + ' / ';
+        setOperator('div', ' / ');
     });
 
     // Operating function
@@ -220,18 +227,15 @@ function calculator() {
     // Equals Button
     const buttonEquals = document.querySelector('.button.equal');
     buttonEquals.addEventListener('click', () => {
-            function fillEquation () {
-                equation.push(
-                    parseInt(numArr1.join('')),
-                    opSelector,
-                    parseInt(numArr2.join(''))
-                )
+        if(numArr.length > 0) {
+            equation.push(parseInt(numArr.join('')));
+            displayTop.textContent += numArr.join('') + ' =';
+            numArr.length = 0;
             }
-            fillEquation();
-            display.textContent = operate(equation[0], equation[1], equation[2])
-            calcStage = 3;
-
-            displayTop.textContent += numArr2.join('') + ' =';
+        const result = equation.reduce((acc, curr) => {
+            
+        })
+        console.log(result);
         }
     );
 
@@ -239,9 +243,10 @@ function calculator() {
     const buttonClear = document.querySelector('.button.clear');
     buttonClear.addEventListener('click', () => {
         resetDisplay();
-        numArr1.length = 0;
-        numArr2.length = 0;
+        resetDisplay('top');
+        numArr.length = 0;
         equation.length = 0;
     });
+    console.log(equation);
 }
 calculator();
